@@ -25,7 +25,7 @@ const cols = [
     links: [
       { label: "Documentation", href: "#" },
       { label: "API", href: "#" },
-      { label: "Blog", href: "#" },
+      { label: "Blog", href: "/blog" },
       { label: "Status", href: "#" },
     ],
   },
