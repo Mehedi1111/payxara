@@ -1,128 +1,156 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import Image from "next/image";
 import ScrollReveal from "@/components/ScrollReveal";
+import AnimatedCounter from "@/components/AnimatedCounter";
 
 export const metadata: Metadata = {
-  title: "Clients — Who uses Payxara",
-  description: "From Series A startups to global enterprises — Payxara scales with your business.",
+  title: "Clients — Wealth Professionals Who Chose Payxara",
+  description:
+    "From boutique advisory to institutional management. See how Payxara helps wealth professionals serve more clients with less overhead.",
 };
 
-const segments = [
+const cases = [
   {
-    label: "E-commerce & Retail",
-    headline: "Pay suppliers globally. Get paid locally.",
-    body: "E-commerce businesses use Payxara to pay overseas manufacturers, receive revenue in local currencies, and reconcile it all in one dashboard — without a treasury team.",
-    points: ["Multi-currency checkout", "Supplier batch payments", "Automatic reconciliation", "FX rate protection"],
+    firm: "Hartley Capital",
+    type: "Private Wealth Manager · London",
+    quote:
+      "Payxara cut our compliance time by 70%. We can now serve twice the clients without adding headcount.",
+    author: "Sarah Hartley",
+    role: "Founder, Hartley Capital",
+    stats: [
+      { val: "70%", label: "less admin" },
+      { val: "2×", label: "client capacity" },
+      { val: "£0", label: "extra headcount" },
+    ],
+    photo: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&w=400&h=400&q=80",
+    bg: "https://images.unsplash.com/photo-1560472354-b33ff0c44a43?auto=format&fit=crop&w=700&h=480&q=80",
   },
   {
-    label: "SaaS & Technology",
-    headline: "Global revenue, without global complexity.",
-    body: "Software companies use Payxara to accept subscriptions in 60+ currencies, pay contractors across time zones, and keep their finance stack simple as they scale.",
-    points: ["Subscription billing support", "Contractor payouts", "Revenue recognition exports", "API-native operations"],
+    firm: "Meridian Advisors",
+    type: "Multi-Family Office · Edinburgh",
+    quote:
+      "We pay 140 contractors across 28 countries every month. Payxara makes it feel like we're paying one person in one country.",
+    author: "Ananya Singh",
+    role: "COO, Meridian Advisors",
+    stats: [
+      { val: "140", label: "contractors paid" },
+      { val: "28", label: "countries covered" },
+      { val: "99.9%", label: "on-time settlement" },
+    ],
+    photo: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=400&h=400&q=80",
+    bg: "https://images.unsplash.com/photo-1600880292203-757bb62b4baf?auto=format&fit=crop&w=700&h=480&q=80",
   },
   {
-    label: "Financial Services",
-    headline: "Move client funds with confidence.",
-    body: "Wealth managers, lending platforms, and trading desks use Payxara for its compliance infrastructure and settlement speed — because when it comes to client money, nothing less is acceptable.",
-    points: ["SOC 2 Type II compliant", "Immutable audit trails", "Sanctions screening", "Segregated accounts"],
-  },
-  {
-    label: "Professional Services",
-    headline: "Invoice globally. Chase nothing.",
-    body: "Agencies, consultancies, and law firms use Payxara to invoice international clients in their local currency and settle without the friction of correspondent banking.",
-    points: ["Multi-currency invoicing", "Automated payment reminders", "Live FX on receipts", "Client portal access"],
-  },
-];
-
-const testimonials = [
-  {
-    quote: "Our settlement time dropped from 4 days to under a minute. The impact on cash flow was immediate.",
-    name: "James W.",
-    role: "Head of Finance, Volta Logistics",
-    initials: "JW",
-  },
-  {
-    quote: "We pay 140 contractors across 28 countries every month. Payxara makes it feel like we're paying one person in one country.",
-    name: "Ananya S.",
-    role: "COO, Meridian Software",
-    initials: "AS",
-  },
-  {
-    quote: "The compliance tooling alone would have taken us six months to build internally. We had it running on day one.",
-    name: "David L.",
+    firm: "Apex Wealth",
+    type: "Institutional Asset Manager · Dublin",
+    quote:
+      "The compliance tooling alone would have taken us six months to build internally. We had it running on day one.",
+    author: "David Lin",
     role: "CTO, Apex Wealth",
-    initials: "DL",
+    stats: [
+      { val: "6mo", label: "saved in dev time" },
+      { val: "Day 1", label: "go-live" },
+      { val: "100%", label: "audit coverage" },
+    ],
+    photo: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&w=400&h=400&q=80",
+    bg: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=700&h=480&q=80",
   },
 ];
 
 export default function ClientsPage() {
   return (
     <>
-      {/* Hero */}
-      <section className="pt-32 pb-20 lg:pt-40 lg:pb-28 px-5 bg-bg">
-        <div className="max-w-6xl mx-auto">
+      {/* ── HERO ─────────────────────────────── */}
+      <section className="bg-white pt-40 pb-16 px-6 text-center">
+        <div className="max-w-3xl mx-auto">
           <ScrollReveal>
-            <p className="text-[11px] font-semibold tracking-[0.15em] uppercase text-muted mb-4">Clients</p>
-            <h1 className="text-[clamp(36px,6vw,68px)] font-extrabold text-ink leading-[1.05] tracking-tight mb-6 max-w-3xl">
-              Built for businesses that operate without borders.
+            <h1
+              className="font-black text-ink tracking-[-0.03em] leading-[1.02]"
+              style={{ fontSize: "clamp(44px,6vw,78px)" }}
+            >
+              Wealth professionals who chose Payxara.
             </h1>
-            <p className="text-[clamp(16px,2vw,20px)] text-muted leading-relaxed max-w-xl">
-              From Series A startups to global enterprises — Payxara scales with
-              your transaction volume, team size, and ambition.
+            <p className="text-[18px] text-ink-muted mt-6">
+              From boutique advisory to institutional management.
             </p>
           </ScrollReveal>
         </div>
       </section>
 
-      {/* Segments */}
-      <section className="py-20 lg:py-28 px-5 bg-bg-alt border-t border-border">
-        <div className="max-w-6xl mx-auto space-y-6">
-          {segments.map((s, i) => (
-            <ScrollReveal key={s.label} delay={i * 0.08}>
-              <div className={`rounded-3xl p-8 lg:p-10 border border-border ${i % 2 === 0 ? "bg-card" : "bg-bg"}`}>
-                <div className="grid md:grid-cols-2 gap-8 lg:gap-16">
-                  <div>
-                    <p className="text-[12px] font-semibold text-accent uppercase tracking-widest mb-4">{s.label}</p>
-                    <h2 className="text-[clamp(20px,3vw,32px)] font-bold text-ink leading-tight mb-4">{s.headline}</h2>
-                    <p className="text-[14px] text-muted leading-relaxed">{s.body}</p>
-                  </div>
-                  <ul className="space-y-3 self-center">
-                    {s.points.map((p) => (
-                      <li key={p} className="flex items-center gap-3 text-[14px] text-ink">
-                        <span className="w-5 h-5 rounded-full bg-accent-light text-accent flex items-center justify-center shrink-0 text-[11px] font-bold">✓</span>
-                        {p}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
+      {/* ── CLIENT CASE STUDIES ──────────────── */}
+      {cases.map((c, i) => (
+        <section key={c.firm} className="border-t border-line">
+          <div className={`max-w-6xl mx-auto px-6 py-20 grid md:grid-cols-2 gap-12 items-start ${i % 2 !== 0 ? "md:[&>*:first-child]:order-2" : ""}`}>
+            {/* Image */}
+            <ScrollReveal x={i % 2 === 0 ? -30 : 30}>
+              <div className="relative rounded-2xl overflow-hidden h-72 w-full">
+                <Image
+                  src={c.bg}
+                  alt={c.firm}
+                  fill
+                  className="object-cover"
+                />
               </div>
             </ScrollReveal>
-          ))}
-        </div>
-      </section>
 
-      {/* Testimonials */}
-      <section className="py-20 lg:py-28 px-5 bg-bg border-t border-border">
-        <div className="max-w-6xl mx-auto">
-          <ScrollReveal className="mb-12">
-            <h2 className="text-[clamp(26px,4vw,44px)] font-bold text-ink leading-tight tracking-tight">
-              From the people using it every day.
-            </h2>
-          </ScrollReveal>
-          <div className="grid md:grid-cols-3 gap-5">
-            {testimonials.map((t, i) => (
-              <ScrollReveal key={t.name} delay={i * 0.1}>
-                <div className="bg-card border border-border rounded-2xl p-6 h-full flex flex-col justify-between">
-                  <p className="text-[15px] text-ink leading-relaxed mb-6">&ldquo;{t.quote}&rdquo;</p>
-                  <div className="flex items-center gap-3">
-                    <div className="w-9 h-9 rounded-full bg-accent-light text-accent font-semibold text-[13px] flex items-center justify-center shrink-0">
-                      {t.initials}
-                    </div>
-                    <div>
-                      <p className="text-[13px] font-semibold text-ink">{t.name}</p>
-                      <p className="text-[12px] text-muted">{t.role}</p>
-                    </div>
+            {/* Content */}
+            <ScrollReveal delay={0.1}>
+              <p className="text-[26px] font-extrabold text-ink">{c.firm}</p>
+              <p className="text-[14px] text-ink-faint mt-1">{c.type}</p>
+              <div className="w-12 h-1 bg-green my-5" />
+              <blockquote className="text-[20px] font-medium text-ink leading-[1.5] italic">
+                &ldquo;{c.quote}&rdquo;
+              </blockquote>
+
+              <div className="flex items-center gap-3 mt-6">
+                <Image
+                  src={c.photo}
+                  alt={c.author}
+                  width={40}
+                  height={40}
+                  className="rounded-full object-cover"
+                />
+                <div>
+                  <p className="text-[14px] font-semibold text-ink">{c.author}</p>
+                  <p className="text-[13px] text-ink-muted">{c.role}</p>
+                </div>
+              </div>
+
+              {/* Stats */}
+              <div className="flex gap-6 mt-8 pt-8 border-t border-line">
+                {c.stats.map((s) => (
+                  <div key={s.label}>
+                    <p className="text-[22px] font-extrabold text-ink leading-tight">{s.val}</p>
+                    <p className="text-[12px] text-ink-faint mt-1">{s.label}</p>
                   </div>
+                ))}
+              </div>
+            </ScrollReveal>
+          </div>
+        </section>
+      ))}
+
+      {/* ── STATS BAND ───────────────────────── */}
+      <section className="bg-dark py-16 px-6">
+        <div className="max-w-6xl mx-auto">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-0">
+            {[
+              { to: 500, suffix: "+", label: "Wealth professionals" },
+              { to: 4.2, suffix: "B", prefix: "£", label: "Assets on platform", decimals: 1 },
+              { to: 99.9, suffix: "%", label: "Uptime SLA", decimals: 1 },
+              { to: 2, suffix: "hrs", prefix: "< ", label: "Average onboarding" },
+            ].map((s, i) => (
+              <ScrollReveal key={s.label} delay={i * 0.08}>
+                <div
+                  className={`text-center py-8 px-4 ${
+                    i < 3 ? "border-b md:border-b-0 md:border-r border-white/10" : ""
+                  }`}
+                >
+                  <p className="text-[44px] font-black text-white leading-none tracking-tight">
+                    <AnimatedCounter to={s.to} prefix={s.prefix || ""} suffix={s.suffix} decimals={s.decimals || 0} />
+                  </p>
+                  <p className="text-[14px] text-white/50 mt-2">{s.label}</p>
                 </div>
               </ScrollReveal>
             ))}
@@ -130,22 +158,25 @@ export default function ClientsPage() {
         </div>
       </section>
 
-      {/* CTA */}
-      <section className="py-20 lg:py-28 px-5 bg-bg-dark">
-        <div className="max-w-6xl mx-auto text-center">
+      {/* ── CTA ──────────────────────────────── */}
+      <section className="bg-canvas py-20 px-6 border-t border-line text-center">
+        <div className="max-w-2xl mx-auto">
           <ScrollReveal>
-            <h2 className="text-[clamp(28px,4vw,52px)] font-bold text-white leading-tight mb-6">
-              See if Payxara is right for your business.
+            <h2
+              className="font-extrabold text-ink tracking-[-0.025em]"
+              style={{ fontSize: "clamp(28px,4vw,48px)" }}
+            >
+              See if Payxara is right for your practice.
             </h2>
-            <p className="text-[16px] text-white/50 mb-10 max-w-md mx-auto">
+            <p className="text-[16px] text-ink-muted mt-5 max-w-xl mx-auto">
               Start free, no credit card. Or talk to the team about your specific needs.
             </p>
-            <div className="flex flex-wrap justify-center gap-3">
-              <Link href="/pricing" className="bg-white text-ink text-[15px] font-semibold px-7 py-3.5 rounded-full hover:bg-white/90 transition-colors">
-                View pricing
+            <div className="mt-10 flex flex-wrap justify-center gap-4">
+              <Link href="/acquire" className="green-btn px-8 py-4 rounded-xl text-[16px]">
+                Get Started Free
               </Link>
-              <Link href="#" className="border border-white/20 text-white text-[15px] font-medium px-7 py-3.5 rounded-full hover:bg-white/10 transition-colors">
-                Talk to sales
+              <Link href="mailto:hello@madebyevoke.com" className="ghost-btn-dark px-8 py-4 rounded-xl text-[16px]">
+                Talk to Sales
               </Link>
             </div>
           </ScrollReveal>

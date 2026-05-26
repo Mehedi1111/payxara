@@ -1,189 +1,346 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import Image from "next/image";
 import ScrollReveal from "@/components/ScrollReveal";
 import AnimatedCounter from "@/components/AnimatedCounter";
 import MarqueeRow from "@/components/MarqueeRow";
+import PortfolioCard from "@/components/mockups/PortfolioCard";
+import ReportCard from "@/components/mockups/ReportCard";
+import ActivityFeed from "@/components/mockups/ActivityFeed";
+import DashboardScreen from "@/components/mockups/DashboardScreen";
 
 export const metadata: Metadata = {
-  title: "Payxara — Global Payments Platform",
+  title: "Payxara — Private Wealth Intelligence Platform",
+  description:
+    "Collect portfolio intelligence, automate compliance reporting, and deliver institutional-grade wealth management. Without the overhead.",
 };
+
+const trustLogos = [
+  "JPMorgan", "UBS", "Schroders", "Bloomberg", "Refinitiv",
+  "FCA", "Deloitte", "KPMG",
+];
 
 const features = [
   {
     icon: (
-      <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.8}>
-        <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z" />
+      <svg width="22" height="22" fill="none" viewBox="0 0 24 24" stroke="#33E529" strokeWidth={1.8}>
+        <path strokeLinecap="round" strokeLinejoin="round" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 004 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
       </svg>
     ),
-    title: "Instant Transfers",
-    body: "Move funds between 180+ countries in seconds. No batch windows, no delays — real-time settlement as standard.",
+    tag: "MULTI-CURRENCY",
+    title: "International wealth management simplified.",
+    body: "34 currencies. FX at institutional rates. Consolidated reporting in base currency. One platform.",
   },
   {
     icon: (
-      <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.8}>
-        <path strokeLinecap="round" strokeLinejoin="round" d="M12 21a9.004 9.004 0 008.716-6.747M12 21a9.004 9.004 0 01-8.716-6.747M12 21c2.485 0 4.5-4.03 4.5-9S14.485 3 12 3m0 18c-2.485 0-4.5-4.03-4.5-9S9.515 3 12 3m0 0a8.997 8.997 0 017.843 4.582M12 3a8.997 8.997 0 00-7.843 4.582m15.686 0A11.953 11.953 0 0112 10.5c-2.998 0-5.74-1.1-7.843-2.918m15.686 0A8.959 8.959 0 0121 12c0 .778-.099 1.533-.284 2.253" />
+      <svg width="22" height="22" fill="none" viewBox="0 0 24 24" stroke="#33E529" strokeWidth={1.8}>
+        <path strokeLinecap="round" strokeLinejoin="round" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
       </svg>
     ),
-    title: "60+ Currencies",
-    body: "Accept and send in any major currency. Exchange rates updated in real time — always mid-market, never inflated.",
+    tag: "AI INSIGHTS",
+    title: "Flag portfolio risks before clients ask about them.",
+    body: "Concentration risk, correlation spikes, benchmark drift — Payxara monitors continuously and alerts advisors before issues surface.",
   },
   {
     icon: (
-      <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.8}>
-        <path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z" />
+      <svg width="22" height="22" fill="none" viewBox="0 0 24 24" stroke="#33E529" strokeWidth={1.8}>
+        <path strokeLinecap="round" strokeLinejoin="round" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
       </svg>
     ),
-    title: "Bank-Grade Security",
-    body: "256-bit AES encryption, SOC 2 Type II certified, PCI DSS Level 1. AI fraud detection running on every transaction.",
-  },
-  {
-    icon: (
-      <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.8}>
-        <path strokeLinecap="round" strokeLinejoin="round" d="M3 13.125C3 12.504 3.504 12 4.125 12h2.25c.621 0 1.125.504 1.125 1.125v6.75C7.5 20.496 6.996 21 6.375 21h-2.25A1.125 1.125 0 013 19.875v-6.75zM9.75 8.625c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125v11.25c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V8.625zM16.5 4.125c0-.621.504-1.125 1.125-1.125h2.25C20.496 3 21 3.504 21 4.125v15.75c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V4.125z" />
-      </svg>
-    ),
-    title: "Smart Analytics",
-    body: "A real-time view of cash flow, transaction health, and FX exposure — designed for finance teams who need clarity fast.",
-  },
-  {
-    icon: (
-      <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.8}>
-        <path strokeLinecap="round" strokeLinejoin="round" d="M17.25 6.75L22.5 12l-5.25 5.25m-10.5 0L1.5 12l5.25-5.25m7.5-3l-4.5 16.5" />
-      </svg>
-    ),
-    title: "Developer API",
-    body: "REST and webhook APIs with SDKs in 8 languages. Go from sandbox to live in one afternoon — documentation that actually helps.",
-  },
-  {
-    icon: (
-      <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.8}>
-        <path strokeLinecap="round" strokeLinejoin="round" d="M12 6v12m-3-2.818l.879.659c1.171.879 3.07.879 4.242 0 1.172-.879 1.172-2.303 0-3.182C13.536 12.219 12.768 12 12 12c-.725 0-1.45-.22-2.003-.659-1.106-.879-1.106-2.303 0-3.182s2.9-.879 4.006 0l.415.33M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-      </svg>
-    ),
-    title: "No Hidden Fees",
-    body: "One transparent rate. No setup fees, no minimums, no surprises on your statement. The price you see is the price you pay.",
+    tag: "CLIENT PORTAL",
+    title: "A client portal they'll actually log into.",
+    body: "White-labelled portals with real-time data, secure document vaults, and in-app messaging. Branded as yours.",
   },
 ];
 
 const steps = [
   {
     n: "01",
-    title: "Create your account",
-    body: "Sign up in under two minutes. Verify your identity with our streamlined KYC process — no paperwork, no branch visits.",
+    title: "Sign up in minutes",
+    body: "Create your account. No sales call required. Full platform access from day one.",
   },
   {
     n: "02",
-    title: "Connect your bank",
-    body: "Link your business account securely via Open Banking. Supports 10,000+ banks across 60+ countries worldwide.",
+    title: "Connect your custodians",
+    body: "Link your custodian feeds automatically. Payxara ingests and reconciles your positions in real time.",
   },
   {
     n: "03",
-    title: "Start sending",
-    body: "Transfer funds globally in one click. Set up recurring payments, batch transfers, or automate via API.",
+    title: "Set up client reporting",
+    body: "Configure your report templates. Payxara handles generation, formatting, and delivery.",
+  },
+  {
+    n: "04",
+    title: "We're here every step",
+    body: "Dedicated onboarding specialist. UK-based support team. SLA-backed from day one.",
   },
 ];
 
-const marqueeItems = [
-  "Instant transfers", "180+ countries", "60+ currencies",
-  "Zero hidden fees", "Bank-grade security", "50ms avg. latency", "Payxara",
-];
-
-const testimonials = [
-  {
-    quote: "We cut our international settlement time from 3 days to under 30 seconds. Payxara completely changed how we operate.",
-    name: "Sarah K.",
-    role: "CFO, Meridian Group",
-    initials: "SK",
-  },
-  {
-    quote: "Finally a payment platform that doesn't treat FX like a profit centre. Mid-market rates, every single time.",
-    name: "Marcus T.",
-    role: "Head of Finance, Norvik Capital",
-    initials: "MT",
-  },
-  {
-    quote: "The API is exceptional. We had our integration running in production the same day we started. Genuinely rare.",
-    name: "Priya R.",
-    role: "CTO, Slate Commerce",
-    initials: "PR",
-  },
-];
-
-export default function Home() {
+export default function HomePage() {
   return (
     <>
-      {/* ── Hero ────────────────────────────────────── */}
-      <section className="pt-32 pb-20 lg:pt-40 lg:pb-28 px-5 bg-bg">
-        <div className="max-w-6xl mx-auto">
-          <div className="max-w-3xl">
-            <div className="inline-flex items-center gap-2 bg-accent-light text-accent text-[12px] font-semibold tracking-wide uppercase px-3 py-1.5 rounded-full mb-6">
-              <span className="w-1.5 h-1.5 rounded-full bg-accent" />
-              Now live in 180+ countries
+      {/* ── HERO ───────────────────────────────── */}
+      <section className="bg-dark min-h-[88vh] overflow-hidden relative">
+        <div className="max-w-7xl mx-auto px-6 pt-24 pb-20 grid md:grid-cols-[52fr_48fr] gap-12 items-center">
+          {/* Left */}
+          <div>
+            {/* Badge */}
+            <div className="inline-flex items-center gap-2 bg-white/10 border border-white/15 rounded-full px-4 py-1.5 mb-6">
+              <span className="w-2 h-2 rounded-full bg-green animate-pulse-green" />
+              <span className="text-[12px] font-medium text-white/70">Payxara · Private Wealth Platform</span>
             </div>
-            <h1 className="text-[clamp(40px,6vw,72px)] font-extrabold text-ink leading-[1.05] tracking-tight mb-6">
-              Move money globally,<br className="hidden sm:block" /> without the friction.
+
+            {/* Headline */}
+            <h1
+              className="font-black text-white leading-[1.02] tracking-[-0.03em]"
+              style={{ fontSize: "clamp(48px,6.5vw,84px)" }}
+            >
+              <span className="block">THE SMARTER</span>
+              <span className="block">WAY TO</span>
+              <span className="block">MANAGE WEALTH.</span>
             </h1>
-            <p className="text-[clamp(16px,2vw,20px)] text-muted leading-relaxed mb-10 max-w-xl">
-              Payxara is built for businesses that can&apos;t afford to wait. Instant
-              transfers, real exchange rates, and zero hidden fees — in 180+
-              countries.
+
+            {/* Sub */}
+            <p className="mt-8 text-[18px] text-white/60 max-w-[440px] leading-[1.7]">
+              Collect portfolio intelligence, automate compliance reporting, and deliver
+              institutional-grade wealth management. Without the overhead.
             </p>
-            <div className="flex flex-wrap gap-3">
-              <Link
-                href="#"
-                className="bg-ink text-white text-[15px] font-semibold px-6 py-3.5 rounded-full hover:bg-ink/80 transition-colors"
-              >
-                Start for free
+
+            {/* Buttons */}
+            <div className="mt-10 flex flex-wrap gap-4">
+              <Link href="/platform" className="green-btn px-7 py-4 rounded-xl text-[15px]">
+                Get Started
               </Link>
-              <Link
-                href="/platform"
-                className="border border-border text-ink text-[15px] font-medium px-6 py-3.5 rounded-full hover:bg-bg-alt transition-colors"
-              >
-                See how it works →
+              <Link href="mailto:hello@madebyevoke.com" className="ghost-btn px-7 py-4 rounded-xl text-[15px]">
+                Contact Sales
               </Link>
             </div>
           </div>
 
-          {/* Hero stat cards */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-16 pt-16 border-t border-border">
-            {[
-              { value: "$2.4B", label: "Processed monthly" },
-              { value: "180+", label: "Countries" },
-              { value: "99.99%", label: "Uptime" },
-              { value: "50ms", label: "Avg. transaction" },
-            ].map((s) => (
-              <div key={s.label} className="bg-card rounded-2xl px-5 py-5 border border-border">
-                <p className="text-[28px] font-bold text-ink leading-none mb-1">{s.value}</p>
-                <p className="text-[13px] text-muted">{s.label}</p>
+          {/* Right */}
+          <div className="relative hidden md:block">
+            <div className="relative">
+              <Image
+                src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=600&h=440&q=80"
+                alt="Payxara dashboard"
+                width={600}
+                height={440}
+                className="rounded-2xl shadow-mockup"
+                priority
+              />
+
+              {/* Portfolio card floating */}
+              <div className="absolute bottom-8 left-[-30px] animate-float">
+                <PortfolioCard />
               </div>
+
+              {/* Person photo */}
+              <Image
+                src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=120&h=120&q=80"
+                alt="Wealth advisor"
+                width={72}
+                height={72}
+                className="absolute top-6 right-[-16px] rounded-full border-[3px] border-white shadow-card-lg object-cover"
+              />
+
+              {/* Stat bubble */}
+              <div className="absolute bottom-[-14px] right-6 bg-white rounded-2xl shadow-card-lg px-4 py-3 flex items-center gap-3">
+                <span className="w-2 h-2 rounded-full bg-green animate-pulse-green flex-shrink-0" />
+                <div>
+                  <span className="text-[16px] font-extrabold text-ink block leading-tight">£4.2B</span>
+                  <span className="text-[12px] text-ink-faint leading-tight">assets under management</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ── TRUST BAR ──────────────────────────── */}
+      <section className="bg-white py-14 px-6 border-b border-line">
+        <div className="max-w-7xl mx-auto">
+          <ScrollReveal>
+            <p
+              className="font-bold text-ink text-center"
+              style={{ fontSize: "clamp(20px,2vw,28px)" }}
+            >
+              Used by 500+ wealth professionals.
+            </p>
+            <p className="text-[15px] text-ink-muted mt-2 text-center">
+              Small advisory firms to institutional capital management. Globally.
+            </p>
+          </ScrollReveal>
+          <div className="mt-10">
+            <MarqueeRow items={trustLogos} />
+          </div>
+        </div>
+      </section>
+
+      {/* ── FEATURE INTRO ──────────────────────── */}
+      <section className="bg-canvas py-24 px-6 border-t border-line">
+        <div className="max-w-4xl mx-auto text-center mb-16">
+          <ScrollReveal>
+            <h2
+              className="font-extrabold text-ink tracking-[-0.025em]"
+              style={{ fontSize: "clamp(32px,4vw,52px)" }}
+            >
+              Wealth management.
+              <br />
+              But without the hassle.
+            </h2>
+          </ScrollReveal>
+        </div>
+
+        <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-16 items-center">
+          {/* Left: stacked mockups */}
+          <ScrollReveal>
+            <div className="relative h-80">
+              <div className="absolute top-0 left-4" style={{ transform: "rotate(-2deg)" }}>
+                <ActivityFeed />
+              </div>
+              <div className="absolute top-12 left-32" style={{ transform: "rotate(1.5deg)" }}>
+                <ReportCard />
+              </div>
+            </div>
+          </ScrollReveal>
+
+          {/* Right: 2×2 benefit grid */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-12 gap-y-8">
+            {[
+              {
+                title: "End late reporting",
+                body: "Clients submit data on time. Automated reminders handle the follow-up so you never have to chase.",
+              },
+              {
+                title: "No more manual reconciliation",
+                body: "Payxara connects to custodian feeds and reconciles positions automatically. Daily. Zero human error.",
+              },
+              {
+                title: "Compliance on autopilot",
+                body: "MiFID II, CASS, and FCA reports generated and filed automatically. Three clicks from draft to submission.",
+              },
+              {
+                title: "Zero hidden fees",
+                body: "Flat-rate pricing. No AUM percentage. No custody charges. No invoice surprises at quarter end.",
+              },
+            ].map((b, i) => (
+              <ScrollReveal key={b.title} delay={i * 0.1}>
+                <div className="border-b border-line pb-6">
+                  <p className="text-[16px] font-bold text-ink">{b.title}</p>
+                  <p className="text-[14px] text-ink-muted mt-2 leading-[1.7]">{b.body}</p>
+                </div>
+              </ScrollReveal>
             ))}
           </div>
         </div>
       </section>
 
-      {/* ── Marquee ─────────────────────────────────── */}
-      <div className="py-4 border-y border-border overflow-hidden">
-        <MarqueeRow items={marqueeItems} />
-      </div>
-
-      {/* ── Features ────────────────────────────────── */}
-      <section id="features" className="py-20 lg:py-28 px-5">
-        <div className="max-w-6xl mx-auto">
+      {/* ── MAIN FEATURES ──────────────────────── */}
+      <section className="bg-white py-24 px-6 border-t border-line">
+        <div className="max-w-7xl mx-auto">
           <ScrollReveal className="mb-14">
-            <p className="text-[11px] font-semibold tracking-[0.15em] uppercase text-muted mb-3">Features</p>
-            <h2 className="text-[clamp(28px,4vw,44px)] font-bold text-ink leading-tight tracking-tight max-w-md">
-              Everything your business needs to move money.
+            <p className="text-[12px] font-semibold tracking-[0.15em] uppercase text-ink-faint">
+              EVERYTHING YOUR CLIENTS NEED
+            </p>
+            <h2
+              className="font-extrabold text-ink tracking-[-0.025em] mt-2"
+              style={{ fontSize: "clamp(32px,4vw,52px)" }}
+            >
+              Built for wealth management. Front to back.
             </h2>
           </ScrollReveal>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+
+          {/* Two large cards */}
+          <div className="grid md:grid-cols-2 gap-5 mb-5">
+            {/* Card 1 */}
+            <ScrollReveal>
+              <div className="bg-canvas rounded-2xl overflow-hidden">
+                <div className="h-56 relative overflow-hidden">
+                  <Image
+                    src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=580&h=340&q=80"
+                    alt="Portfolio intelligence"
+                    fill
+                    className="object-cover"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#F7F7F5] via-transparent" />
+                  <div className="absolute bottom-[-16px] left-6 scale-90 origin-bottom-left">
+                    <PortfolioCard />
+                  </div>
+                </div>
+                <div className="p-8 pt-12">
+                  <p className="text-[11px] font-semibold tracking-[0.12em] uppercase text-green mb-3">
+                    PORTFOLIO INTELLIGENCE
+                  </p>
+                  <h3 className="text-[22px] font-extrabold text-ink tracking-[-0.02em]">
+                    Real-time portfolio intelligence for every client.
+                  </h3>
+                  <p className="text-[15px] text-ink-muted mt-3 leading-[1.7]">
+                    Live view of every position, allocation, and performance metric — aggregated
+                    from any custodian, updated in real time.
+                  </p>
+                  <Link
+                    href="/platform"
+                    className="inline-flex items-center gap-1 text-[14px] font-semibold text-ink mt-5 hover:text-green transition-colors"
+                  >
+                    See how portfolio intelligence works →
+                  </Link>
+                </div>
+              </div>
+            </ScrollReveal>
+
+            {/* Card 2 */}
+            <ScrollReveal delay={0.08}>
+              <div className="bg-canvas rounded-2xl overflow-hidden">
+                <div className="h-56 relative overflow-hidden">
+                  <Image
+                    src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?auto=format&fit=crop&w=580&h=340&q=80"
+                    alt="Automated reporting"
+                    fill
+                    className="object-cover"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#F7F7F5] via-transparent" />
+                  <div className="absolute bottom-[-16px] left-6 scale-90 origin-bottom-left">
+                    <ReportCard />
+                  </div>
+                </div>
+                <div className="p-8 pt-12">
+                  <p className="text-[11px] font-semibold tracking-[0.12em] uppercase text-green mb-3">
+                    AUTOMATED REPORTING
+                  </p>
+                  <h3 className="text-[22px] font-extrabold text-ink tracking-[-0.02em]">
+                    Automated compliance reports. Zero last-minute panic.
+                  </h3>
+                  <p className="text-[15px] text-ink-muted mt-3 leading-[1.7]">
+                    FCA, MiFID II, and CASS reports generated automatically. Review, approve, send.
+                    Your compliance team reclaims their week.
+                  </p>
+                  <Link
+                    href="/platform"
+                    className="inline-flex items-center gap-1 text-[14px] font-semibold text-ink mt-5 hover:text-green transition-colors"
+                  >
+                    See how reporting works →
+                  </Link>
+                </div>
+              </div>
+            </ScrollReveal>
+          </div>
+
+          {/* Three smaller cards */}
+          <div className="grid md:grid-cols-3 gap-5">
             {features.map((f, i) => (
-              <ScrollReveal key={f.title} delay={i * 0.07}>
-                <div className="bg-card border border-border rounded-2xl p-6 h-full hover:border-accent/30 hover:shadow-sm transition-all duration-200">
-                  <div className="w-10 h-10 rounded-xl bg-accent-light text-accent flex items-center justify-center mb-4">
+              <ScrollReveal key={f.tag} delay={i * 0.08}>
+                <div className="bg-white border border-line rounded-2xl p-8 hover:border-ink/20 hover:shadow-card transition-all duration-300 hover:-translate-y-0.5 h-full">
+                  <div className="w-11 h-11 bg-green/15 rounded-xl flex items-center justify-center">
                     {f.icon}
                   </div>
-                  <h3 className="text-[15px] font-semibold text-ink mb-2">{f.title}</h3>
-                  <p className="text-[14px] text-muted leading-relaxed">{f.body}</p>
+                  <p className="text-[11px] font-semibold uppercase tracking-wide text-ink-faint mt-4 mb-2">
+                    {f.tag}
+                  </p>
+                  <h3 className="text-[16px] font-bold text-ink">{f.title}</h3>
+                  <p className="text-[14px] text-ink-muted mt-2 leading-[1.65]">{f.body}</p>
+                  <button className="text-[13px] font-semibold text-ink mt-5 hover:text-green transition-colors block">
+                    Learn more →
+                  </button>
                 </div>
               </ScrollReveal>
             ))}
@@ -191,181 +348,230 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ── How it works ────────────────────────────── */}
-      <section id="how-it-works" className="py-20 lg:py-28 px-5 bg-bg-alt">
-        <div className="max-w-6xl mx-auto">
-          <ScrollReveal className="mb-14">
-            <p className="text-[11px] font-semibold tracking-[0.15em] uppercase text-muted mb-3">How it works</p>
-            <h2 className="text-[clamp(28px,4vw,44px)] font-bold text-ink leading-tight tracking-tight">
-              Up and running in minutes.
+      {/* ── DEMO CTA BANNER ────────────────────── */}
+      <div className="mx-4 lg:mx-12 my-6">
+        <div className="bg-dark rounded-3xl overflow-hidden relative min-h-[280px] flex">
+          {/* Left */}
+          <div className="px-12 py-14 max-w-[460px] relative z-10">
+            <span className="bg-green inline-block px-3 py-1 rounded-full text-[11px] font-bold text-ink tracking-wide uppercase mb-4">
+              LIVE DEMO
+            </span>
+            <h2
+              className="font-extrabold text-white tracking-[-0.025em]"
+              style={{ fontSize: "clamp(24px,3vw,38px)" }}
+            >
+              Try the Payxara Dashboard.
             </h2>
-          </ScrollReveal>
-          <div className="grid md:grid-cols-3 gap-6">
-            {steps.map((s, i) => (
-              <ScrollReveal key={s.n} delay={i * 0.1}>
-                <div className="bg-card border border-border rounded-2xl p-7">
-                  <span className="text-[13px] font-semibold text-muted mb-5 block">{s.n}</span>
-                  <h3 className="text-[20px] font-bold text-ink mb-3 leading-tight">{s.title}</h3>
-                  <p className="text-[14px] text-muted leading-relaxed">{s.body}</p>
-                </div>
-              </ScrollReveal>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ── Stats dark ──────────────────────────────── */}
-      <section className="py-20 lg:py-28 px-5 bg-bg-dark">
-        <div className="max-w-6xl mx-auto">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 lg:gap-12">
-            {[
-              { n: 2400000000, prefix: "$", suffix: "+", display: "$2.4B+", label: "Processed to date" },
-              { n: 180, suffix: "+", display: "180+", label: "Countries supported" },
-              { n: 12000, suffix: "+", display: "12K+", label: "Businesses trust us" },
-              { n: 50, suffix: "ms", display: "50ms", label: "Average transfer speed" },
-            ].map((s) => (
-              <ScrollReveal key={s.label}>
-                <p className="text-[clamp(32px,4vw,52px)] font-bold text-white leading-none mb-2">{s.display}</p>
-                <p className="text-[13px] text-white/50">{s.label}</p>
-              </ScrollReveal>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ── Feature rows ────────────────────────────── */}
-      <section className="py-20 lg:py-28 px-5 bg-bg">
-        <div className="max-w-6xl mx-auto space-y-6">
-          {/* Row 1 */}
-          <div className="grid md:grid-cols-2 gap-6 items-stretch">
-            <ScrollReveal className="bg-card border border-border rounded-3xl p-8 lg:p-10 flex flex-col justify-between">
-              <div>
-                <p className="text-[11px] font-semibold tracking-[0.15em] uppercase text-muted mb-6">Real-time FX</p>
-                <h3 className="text-[clamp(22px,3vw,32px)] font-bold text-ink leading-tight mb-4">
-                  Mid-market rates.<br />Always.
-                </h3>
-                <p className="text-[14px] text-muted leading-relaxed max-w-sm">
-                  No markup. No spread. Payxara uses live mid-market exchange rates on
-                  every transaction in every currency — so you keep more of what you earn.
-                </p>
-              </div>
-              <div className="mt-8 space-y-2">
-                {[
-                  { pair: "USD → GBP", rate: "0.7912", change: "+0.12%" },
-                  { pair: "EUR → JPY", rate: "162.44", change: "+0.08%" },
-                  { pair: "GBP → AED", rate: "4.6831", change: "-0.03%" },
-                ].map((r) => (
-                  <div key={r.pair} className="flex justify-between items-center bg-bg-alt rounded-xl px-4 py-3">
-                    <span className="text-[13px] font-medium text-ink">{r.pair}</span>
-                    <div className="flex items-center gap-3">
-                      <span className="text-[13px] font-semibold text-ink">{r.rate}</span>
-                      <span className={`text-[11px] font-medium ${r.change.startsWith("+") ? "text-green-600" : "text-red-500"}`}>{r.change}</span>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </ScrollReveal>
-
-            <ScrollReveal delay={0.1} className="bg-bg-dark rounded-3xl p-8 lg:p-10 flex flex-col justify-between">
-              <div>
-                <p className="text-[11px] font-semibold tracking-[0.15em] uppercase text-white/40 mb-6">Security</p>
-                <h3 className="text-[clamp(22px,3vw,32px)] font-bold text-white leading-tight mb-4">
-                  Built like a bank.<br />Moves like software.
-                </h3>
-                <p className="text-[14px] text-white/55 leading-relaxed max-w-sm">
-                  SOC 2 Type II, PCI DSS Level 1, and 256-bit encryption on every
-                  transaction. AI fraud detection that learns in real time.
-                </p>
-              </div>
-              <div className="mt-8 grid grid-cols-2 gap-3">
-                {["SOC 2 Type II", "PCI DSS L1", "256-bit AES", "GDPR Ready"].map((badge) => (
-                  <div key={badge} className="bg-white/[0.07] border border-white/10 rounded-xl px-4 py-3 text-[12px] font-semibold text-white/70">
-                    ✓ {badge}
-                  </div>
-                ))}
-              </div>
-            </ScrollReveal>
+            <p className="text-[15px] text-white/60 mt-4 leading-[1.7] max-w-sm">
+              See real-time portfolio views, compliance automation, and client reporting —
+              live, no setup required.
+            </p>
+            <Link href="/platform" className="green-btn px-7 py-3.5 rounded-xl text-[15px] mt-8 inline-block">
+              Explore Demo →
+            </Link>
           </div>
 
-          {/* Row 2 */}
-          <div className="bg-accent-light border border-accent/20 rounded-3xl p-8 lg:p-12">
-            <div className="grid md:grid-cols-2 gap-8 items-center">
-              <ScrollReveal>
-                <p className="text-[11px] font-semibold tracking-[0.15em] uppercase text-accent mb-6">Developer-first</p>
-                <h3 className="text-[clamp(22px,3vw,36px)] font-bold text-ink leading-tight mb-4">
-                  API that actually makes sense.
-                </h3>
-                <p className="text-[14px] text-muted leading-relaxed mb-6">
-                  Clean REST endpoints, real-time webhooks, and SDKs for every major
-                  language. Go from sandbox to production in a single afternoon.
-                </p>
-                <Link href="#" className="inline-flex items-center gap-2 text-[14px] font-semibold text-accent hover:underline underline-offset-4">
-                  View API docs →
-                </Link>
-              </ScrollReveal>
-              <ScrollReveal delay={0.1}>
-                <div className="bg-bg-dark rounded-2xl p-5 font-mono text-[13px] leading-relaxed overflow-x-auto">
-                  <p className="text-white/30 mb-1"># Create a transfer</p>
-                  <p><span className="text-[#7dd3fc]">POST</span> <span className="text-white/70">/v1/transfers</span></p>
-                  <p className="mt-3 text-white/50">{"{"}</p>
-                  <p className="pl-4"><span className="text-[#86efac]">&quot;amount&quot;</span><span className="text-white/50">: </span><span className="text-[#fca5a5]">12400</span><span className="text-white/50">,</span></p>
-                  <p className="pl-4"><span className="text-[#86efac]">&quot;currency&quot;</span><span className="text-white/50">: </span><span className="text-[#fde68a]">&quot;USD&quot;</span><span className="text-white/50">,</span></p>
-                  <p className="pl-4"><span className="text-[#86efac]">&quot;destination&quot;</span><span className="text-white/50">: </span><span className="text-[#fde68a]">&quot;GB29NWBK...&quot;</span></p>
-                  <p className="text-white/50">{"}"}</p>
-                  <p className="mt-3 text-green-400">✓ 200 — Transfer initiated (48ms)</p>
-                </div>
-              </ScrollReveal>
+          {/* Right: dashboard mockup */}
+          <div className="absolute right-0 top-0 bottom-0 w-[46%] overflow-hidden hidden md:flex items-center justify-end pr-6">
+            <div style={{ transform: "rotate(-2deg)" }}>
+              <DashboardScreen />
             </div>
           </div>
         </div>
-      </section>
+      </div>
 
-      {/* ── Testimonials ────────────────────────────── */}
-      <section className="py-20 lg:py-28 px-5 bg-bg-alt">
-        <div className="max-w-6xl mx-auto">
-          <ScrollReveal className="mb-12">
-            <p className="text-[11px] font-semibold tracking-[0.15em] uppercase text-muted mb-3">Testimonials</p>
-            <h2 className="text-[clamp(28px,4vw,44px)] font-bold text-ink leading-tight tracking-tight">
-              What our customers say.
-            </h2>
-          </ScrollReveal>
-          <div className="grid md:grid-cols-3 gap-5">
-            {testimonials.map((t, i) => (
-              <ScrollReveal key={t.name} delay={i * 0.1}>
-                <div className="bg-card border border-border rounded-2xl p-6 h-full flex flex-col justify-between">
-                  <p className="text-[15px] text-ink leading-relaxed mb-6">&ldquo;{t.quote}&rdquo;</p>
-                  <div className="flex items-center gap-3">
-                    <div className="w-9 h-9 rounded-full bg-accent-light text-accent font-semibold text-[13px] flex items-center justify-center shrink-0">
-                      {t.initials}
-                    </div>
-                    <div>
-                      <p className="text-[13px] font-semibold text-ink">{t.name}</p>
-                      <p className="text-[12px] text-muted">{t.role}</p>
-                    </div>
-                  </div>
+      {/* ── INTEGRATIONS ───────────────────────── */}
+      <section className="bg-white py-24 px-6 border-t border-line">
+        <div className="max-w-6xl mx-auto grid md:grid-cols-[45fr_55fr] gap-16 items-center">
+          {/* Left: orbit diagram */}
+          <ScrollReveal>
+            <div className="relative w-[280px] h-[280px] mx-auto">
+              {/* Outer dashed ring */}
+              <svg className="absolute inset-0 w-full h-full" viewBox="0 0 280 280" fill="none">
+                <circle cx="140" cy="140" r="120" stroke="#E2E2DD" strokeWidth="1" strokeDasharray="4 6" />
+                <line x1="140" y1="140" x2="140" y2="28" stroke="#E2E2DD" strokeWidth="1" />
+                <line x1="140" y1="140" x2="37" y2="196" stroke="#E2E2DD" strokeWidth="1" />
+                <line x1="140" y1="140" x2="243" y2="196" stroke="#E2E2DD" strokeWidth="1" />
+              </svg>
+
+              {/* Center */}
+              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-24 h-24 bg-canvas border-2 border-line rounded-full flex flex-col items-center justify-center shadow-card z-10">
+                <span className="w-2.5 h-2.5 rounded-full bg-green" />
+                <span className="text-[12px] font-extrabold text-ink mt-1">Payxara</span>
+              </div>
+
+              {/* Partner circles */}
+              {[
+                { label: "Bloomberg", style: { top: "10%", left: "50%", transform: "translate(-50%, 0)" } },
+                { label: "Xero", style: { bottom: "10%", left: "15%" } },
+                { label: "Salesforce", style: { bottom: "10%", right: "15%" } },
+              ].map((p) => (
+                <div
+                  key={p.label}
+                  className="absolute w-16 h-16 bg-white border border-line rounded-full shadow-card flex items-center justify-center z-10"
+                  style={p.style}
+                >
+                  <span className="text-[10px] font-bold text-ink-faint text-center leading-tight px-1">
+                    {p.label}
+                  </span>
                 </div>
-              </ScrollReveal>
-            ))}
-          </div>
+              ))}
+            </div>
+          </ScrollReveal>
+
+          {/* Right */}
+          <ScrollReveal delay={0.1}>
+            <h2
+              className="font-extrabold text-ink tracking-[-0.02em]"
+              style={{ fontSize: "clamp(26px,3vw,40px)" }}
+            >
+              Great on its own.
+              <br />
+              Or connect to your entire stack.
+            </h2>
+            <p className="text-[15px] text-ink-muted mt-5 leading-[1.7] max-w-md">
+              Payxara connects to your custodian, CRM, accounting platform, and reporting tools.
+              200+ integrations available out of the box.
+            </p>
+            <Link
+              href="/platform"
+              className="inline-flex items-center gap-1 text-[14px] font-semibold text-ink mt-6 hover:text-green transition-colors"
+            >
+              See all 200+ integrations →
+            </Link>
+          </ScrollReveal>
         </div>
       </section>
 
-      {/* ── CTA ─────────────────────────────────────── */}
-      <section className="py-20 lg:py-28 px-5 bg-bg-dark">
-        <div className="max-w-6xl mx-auto text-center">
-          <ScrollReveal>
-            <h2 className="text-[clamp(32px,5vw,60px)] font-bold text-white leading-tight tracking-tight mb-6">
-              Ready to move money<br className="hidden sm:block" /> the right way?
-            </h2>
-            <p className="text-[16px] text-white/50 mb-10 max-w-md mx-auto leading-relaxed">
-              Join 12,000+ businesses already using Payxara. Start free — no credit card required.
-            </p>
-            <div className="flex flex-wrap justify-center gap-3">
-              <Link href="#" className="bg-white text-ink text-[15px] font-semibold px-7 py-3.5 rounded-full hover:bg-white/90 transition-colors">
-                Start for free
+      {/* ── CUSTOMER STORY ─────────────────────── */}
+      <section className="border-t border-line">
+        <div className="grid md:grid-cols-2 min-h-[480px]">
+          {/* Left: image */}
+          <ScrollReveal x={-40}>
+            <div className="relative overflow-hidden h-full min-h-[320px]">
+              <Image
+                src="https://images.unsplash.com/photo-1560472354-b33ff0c44a43?auto=format&fit=crop&w=700&h=580&q=80"
+                alt="Hartley Capital"
+                fill
+                className="object-cover"
+              />
+              <div className="absolute inset-0 bg-ink/40" />
+              <div className="absolute bottom-10 left-10 z-10">
+                <p
+                  className="font-black text-white leading-[0.95] tracking-[-0.02em]"
+                  style={{ fontSize: "52px" }}
+                >
+                  HARTLEY
+                  <br />
+                  CAPITAL
+                </p>
+                <p className="text-[14px] font-medium text-white/70 mt-3">
+                  Private Wealth Manager · London
+                </p>
+              </div>
+            </div>
+          </ScrollReveal>
+
+          {/* Right: quote */}
+          <ScrollReveal x={40}>
+            <div className="bg-canvas px-10 lg:px-16 py-16 flex flex-col justify-center h-full">
+              <p className="text-[11px] font-semibold text-green tracking-[0.15em] uppercase mb-6">
+                CUSTOMER STORY
+              </p>
+              <blockquote
+                className="font-bold text-ink tracking-[-0.02em] leading-[1.3] max-w-lg"
+                style={{ fontSize: "clamp(22px,2.5vw,32px)" }}
+              >
+                &ldquo;We&apos;ve reduced compliance admin by 70%. Payxara is genuinely a game-changer for our practice.&rdquo;
+              </blockquote>
+
+              <div className="flex items-center gap-4 mt-8">
+                <Image
+                  src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&w=400&h=400&q=80"
+                  alt="Sarah Hartley"
+                  width={48}
+                  height={48}
+                  className="rounded-full object-cover"
+                />
+                <div>
+                  <p className="text-[14px] font-semibold text-ink">Sarah Hartley</p>
+                  <p className="text-[13px] text-ink-muted">Founder, Hartley Capital</p>
+                </div>
+              </div>
+
+              <Link
+                href="/clients"
+                className="inline-flex items-center gap-1 text-[14px] font-semibold text-ink mt-8 hover:text-green transition-colors"
+              >
+                See how Hartley Capital uses Payxara →
               </Link>
-              <Link href="/platform" className="border border-white/20 text-white text-[15px] font-medium px-7 py-3.5 rounded-full hover:bg-white/10 transition-colors">
-                Explore platform
+            </div>
+          </ScrollReveal>
+        </div>
+      </section>
+
+      {/* ── GETTING STARTED ────────────────────── */}
+      <section className="bg-white py-24 px-6 border-t border-line">
+        <div className="max-w-6xl mx-auto grid md:grid-cols-[45fr_55fr] gap-16 items-center">
+          {/* Left: steps */}
+          <div>
+            <ScrollReveal>
+              <h2
+                className="font-extrabold text-ink tracking-[-0.02em] mb-10"
+                style={{ fontSize: "clamp(28px,3vw,40px)" }}
+              >
+                Start managing wealth smarter.
+              </h2>
+            </ScrollReveal>
+            <div className="flex flex-col">
+              {steps.map((s, i) => (
+                <ScrollReveal key={s.n} delay={i * 0.15}>
+                  <div className={`flex items-start gap-5 py-6 ${i < steps.length - 1 ? "border-b border-line" : ""}`}>
+                    <span className="text-[28px] font-extrabold text-ink/15 w-10 flex-shrink-0 leading-none mt-0.5">
+                      {s.n}
+                    </span>
+                    <div>
+                      <p className="text-[16px] font-bold text-ink">{s.title}</p>
+                      <p className="text-[14px] text-ink-muted mt-1 leading-[1.6]">{s.body}</p>
+                    </div>
+                  </div>
+                </ScrollReveal>
+              ))}
+            </div>
+          </div>
+
+          {/* Right: mockup image */}
+          <ScrollReveal x={40}>
+            <Image
+              src="https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?auto=format&fit=crop&w=620&h=460&q=80"
+              alt="Payxara platform"
+              width={620}
+              height={460}
+              className="rounded-2xl shadow-card-lg w-full"
+            />
+          </ScrollReveal>
+        </div>
+      </section>
+
+      {/* ── BOTTOM CTA ─────────────────────────── */}
+      <section className="bg-canvas py-20 px-6 border-t border-line text-center">
+        <div className="max-w-2xl mx-auto">
+          <ScrollReveal>
+            <h2
+              className="font-extrabold text-ink tracking-[-0.025em]"
+              style={{ fontSize: "clamp(32px,4vw,54px)" }}
+            >
+              Ready for wealth management that actually works?
+            </h2>
+            <p className="text-[17px] text-ink-muted mt-5 max-w-xl mx-auto">
+              Join 500+ wealth professionals who&apos;ve moved from spreadsheets and legacy platforms to Payxara.
+            </p>
+            <div className="mt-10 flex flex-wrap justify-center gap-4">
+              <Link href="/platform" className="green-btn px-8 py-4 rounded-xl text-[16px]">
+                Get Started
+              </Link>
+              <Link href="mailto:hello@madebyevoke.com" className="ghost-btn-dark px-8 py-4 rounded-xl text-[16px]">
+                Contact Sales
               </Link>
             </div>
           </ScrollReveal>

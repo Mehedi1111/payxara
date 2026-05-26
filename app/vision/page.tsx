@@ -1,114 +1,148 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import Image from "next/image";
 import ScrollReveal from "@/components/ScrollReveal";
 
 export const metadata: Metadata = {
-  title: "Vision — Why Payxara exists",
-  description: "We built Payxara because global payments were broken. Slow, opaque, expensive. There had to be a better way.",
+  title: "Vision — Wealth Management Software Shouldn't Feel Like 2005",
+  description:
+    "The wealth management industry is worth trillions. Its software stack looks like it was built when BlackBerry was still relevant. Payxara exists to fix that.",
 };
-
-const values = [
-  {
-    n: "01",
-    title: "Transparency first",
-    body: "Hidden fees are a feature of the old system, not ours. Every rate, every charge, every line item — shown upfront, always.",
-  },
-  {
-    n: "02",
-    title: "Speed as a right",
-    body: "Waiting three days to move money in 2025 is not a technical limitation. It's a choice. We chose differently.",
-  },
-  {
-    n: "03",
-    title: "Built for builders",
-    body: "The businesses using Payxara are moving fast. Our infrastructure was built to keep up — not hold them back.",
-  },
-  {
-    n: "04",
-    title: "Security without friction",
-    body: "Compliance and speed are not opposites. We built both, together, without making you choose.",
-  },
-];
 
 export default function VisionPage() {
   return (
     <>
-      {/* Hero */}
-      <section className="pt-32 pb-20 lg:pt-40 lg:pb-28 px-5 bg-bg">
-        <div className="max-w-6xl mx-auto">
+      {/* ── HERO ─────────────────────────────── */}
+      <section className="bg-white pt-40 pb-20 px-6">
+        <div className="max-w-5xl mx-auto">
           <ScrollReveal>
-            <p className="text-[11px] font-semibold tracking-[0.15em] uppercase text-muted mb-4">Our vision</p>
-            <h1 className="text-[clamp(36px,6vw,68px)] font-extrabold text-ink leading-[1.05] tracking-tight mb-6 max-w-3xl">
-              A world where moving money is as simple as sending a message.
+            <p className="text-[12px] font-semibold uppercase tracking-[0.15em] text-green mb-4">
+              OUR VISION
+            </p>
+            <h1
+              className="font-black text-ink tracking-[-0.03em] leading-[1.02]"
+              style={{ fontSize: "clamp(44px,6vw,78px)" }}
+            >
+              Wealth management software shouldn&apos;t feel like 2005.
             </h1>
-            <p className="text-[clamp(16px,2vw,20px)] text-muted leading-relaxed max-w-xl">
-              We built Payxara because global payments were broken. Slow, opaque,
-              expensive. There had to be a better way.
+            <p className="text-[19px] text-ink-muted mt-8 max-w-2xl leading-[1.7]">
+              The wealth management industry is worth trillions. Its software stack looks like
+              it was built when BlackBerry was still relevant. Payxara exists to fix that.
             </p>
           </ScrollReveal>
         </div>
       </section>
 
-      {/* Origin story */}
-      <section className="py-20 lg:py-28 px-5 bg-bg-alt border-t border-border">
+      {/* ── SECTION 1 ────────────────────────── */}
+      <section className="py-24 px-6 border-t border-line">
         <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-12 lg:gap-20 items-start">
           <ScrollReveal>
-            <h2 className="text-[clamp(26px,3.5vw,40px)] font-bold text-ink leading-tight mb-6">
-              The problem we set out to solve.
+            <h2
+              className="font-extrabold text-ink leading-tight tracking-[-0.02em]"
+              style={{ fontSize: "clamp(26px,3.5vw,40px)" }}
+            >
+              Legacy platforms charge AUM fees for software built in the 1990s.
             </h2>
-            <div className="space-y-4 text-[15px] text-muted leading-relaxed">
-              <p>
-                Businesses were paying 3–5% on every international transfer.
-                Finance teams were reconciling transactions across five different
-                bank portals. Settlement was taking days that nobody could afford
-                to lose.
-              </p>
-              <p>
-                The technology to fix this existed. The infrastructure to run it
-                efficiently existed. What didn&apos;t exist was a product built with
-                the end user in mind — the CFO, the developer, the operations
-                lead who just needed it to work.
-              </p>
-              <p>
-                That&apos;s Payxara. Payments infrastructure rebuilt from the ground
-                up for the businesses that will define the next decade.
-              </p>
-            </div>
           </ScrollReveal>
-          <ScrollReveal delay={0.15}>
-            <div className="bg-card border border-border rounded-3xl p-8 space-y-6">
-              {[
-                { label: "Average FX markup eliminated", value: "4.2%", sub: "per transaction" },
-                { label: "Settlement time reduced", value: "3 days", sub: "→ under 30 seconds" },
-                { label: "Finance team hours saved", value: "14hrs", sub: "per week on average" },
-              ].map((s) => (
-                <div key={s.label} className="pb-6 border-b border-border last:border-0 last:pb-0">
-                  <p className="text-[12px] text-muted font-medium mb-1">{s.label}</p>
-                  <p className="text-[28px] font-bold text-ink leading-none">{s.value}</p>
-                  <p className="text-[12px] text-muted mt-1">{s.sub}</p>
-                </div>
-              ))}
+          <ScrollReveal delay={0.1}>
+            <div className="space-y-4 text-[16px] text-ink-muted leading-[1.8]">
+              <p>
+                For decades, wealth management firms have paid 10–25bps per year in AUM fees for
+                platforms that haven&apos;t meaningfully evolved since the early 2000s. Clunky
+                interfaces. Manual reconciliation. Reports that take days to produce.
+              </p>
+              <p>
+                The clients of these firms are institutions, family offices, and high-net-worth
+                individuals who expect the same digital quality they see in consumer fintech.
+                Instead they get portals built on Internet Explorer-era technology.
+              </p>
+              <p>
+                There&apos;s no technical reason for any of this. The infrastructure to fix it
+                exists. What hasn&apos;t existed — until now — is a product built by people who
+                actually understand what a modern advisory practice looks like.
+              </p>
             </div>
           </ScrollReveal>
         </div>
       </section>
 
-      {/* Values */}
-      <section className="py-20 lg:py-28 px-5 bg-bg border-t border-border">
+      {/* ── SECTION 2 ────────────────────────── */}
+      <section className="py-24 px-6 border-t border-line bg-canvas">
+        <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-12 lg:gap-20 items-center">
+          <ScrollReveal>
+            <Image
+              src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1200&h=500&q=80"
+              alt="Modern financial infrastructure"
+              width={580}
+              height={380}
+              className="rounded-2xl w-full object-cover"
+            />
+          </ScrollReveal>
+          <ScrollReveal delay={0.1}>
+            <h2
+              className="font-extrabold text-ink leading-tight tracking-[-0.02em]"
+              style={{ fontSize: "clamp(26px,3.5vw,40px)" }}
+            >
+              The advisory firm of 2025 deserves tools built for 2025.
+            </h2>
+            <p className="text-[16px] text-ink-muted mt-6 leading-[1.8]">
+              Payxara is designed from the ground up for firms that move quickly, serve demanding
+              clients, and need their technology to be an accelerator — not an anchor. We&apos;ve
+              built the platform we wished existed when we were advising clients ourselves.
+            </p>
+            <Link
+              href="/platform"
+              className="inline-flex items-center gap-1 text-[15px] font-semibold text-ink mt-6 hover:text-green transition-colors"
+            >
+              See the platform →
+            </Link>
+          </ScrollReveal>
+        </div>
+      </section>
+
+      {/* ── VALUES ───────────────────────────── */}
+      <section className="py-24 px-6 border-t border-line bg-white">
         <div className="max-w-6xl mx-auto">
           <ScrollReveal className="mb-14">
-            <p className="text-[11px] font-semibold tracking-[0.15em] uppercase text-muted mb-3">What we believe</p>
-            <h2 className="text-[clamp(26px,4vw,44px)] font-bold text-ink leading-tight tracking-tight">
+            <p className="text-[12px] font-semibold uppercase tracking-[0.15em] text-ink-faint mb-3">
+              WHAT WE BELIEVE
+            </p>
+            <h2
+              className="font-extrabold text-ink tracking-[-0.025em]"
+              style={{ fontSize: "clamp(26px,4vw,44px)" }}
+            >
               The principles behind everything we build.
             </h2>
           </ScrollReveal>
+
           <div className="grid sm:grid-cols-2 gap-5">
-            {values.map((v, i) => (
+            {[
+              {
+                n: "01",
+                title: "Transparency first",
+                body: "Hidden fees are a feature of the old system, not ours. Every rate, every charge, every line item — shown upfront, always.",
+              },
+              {
+                n: "02",
+                title: "Speed as a right",
+                body: "Waiting three days to move money in 2025 is not a technical limitation. It&apos;s a choice. We chose differently.",
+              },
+              {
+                n: "03",
+                title: "Built for builders",
+                body: "The firms using Payxara are moving fast. Our infrastructure was built to keep up — not hold them back.",
+              },
+              {
+                n: "04",
+                title: "Security without friction",
+                body: "Compliance and speed are not opposites. We built both, together, without making you choose.",
+              },
+            ].map((v, i) => (
               <ScrollReveal key={v.n} delay={i * 0.08}>
-                <div className="bg-card border border-border rounded-2xl p-7">
-                  <span className="text-[12px] font-semibold text-muted">{v.n}</span>
-                  <h3 className="text-[18px] font-bold text-ink mt-3 mb-2">{v.title}</h3>
-                  <p className="text-[14px] text-muted leading-relaxed">{v.body}</p>
+                <div className="bg-canvas border border-line rounded-2xl p-8">
+                  <span className="text-[12px] font-semibold text-ink-faint">{v.n}</span>
+                  <h3 className="text-[20px] font-bold text-ink mt-3 mb-2">{v.title}</h3>
+                  <p className="text-[14px] text-ink-muted leading-[1.7]" dangerouslySetInnerHTML={{ __html: v.body }} />
                 </div>
               </ScrollReveal>
             ))}
@@ -116,14 +150,25 @@ export default function VisionPage() {
         </div>
       </section>
 
-      {/* Dark quote */}
-      <section className="py-20 lg:py-28 px-5 bg-bg-dark">
+      {/* ── CLOSING QUOTE ────────────────────── */}
+      <section className="bg-dark py-24 px-6">
         <div className="max-w-4xl mx-auto text-center">
           <ScrollReveal>
-            <blockquote className="text-[clamp(22px,3.5vw,40px)] font-bold text-white leading-tight mb-8">
-              &ldquo;The businesses winning the next decade won&apos;t be slowed down by the financial infrastructure of the last one.&rdquo;
+            <blockquote
+              className="font-extrabold text-white leading-tight tracking-[-0.025em]"
+              style={{ fontSize: "clamp(28px,4vw,52px)" }}
+            >
+              &ldquo;Payxara is the brand name for a generation of wealth technology that finally gets it right.&rdquo;
             </blockquote>
-            <Link href="#" className="bg-white text-ink text-[15px] font-semibold px-7 py-3.5 rounded-full hover:bg-white/90 transition-colors">
+            <div className="w-16 h-1 bg-green mx-auto my-8" />
+            <p className="text-[18px] text-white/60 max-w-xl mx-auto leading-[1.7]">
+              We&apos;re not fixing wealth management software at the margins. We&apos;re replacing it — with
+              something built for the decade we&apos;re actually in.
+            </p>
+            <Link
+              href="/platform"
+              className="green-btn px-7 py-3.5 rounded-full text-[15px] mt-10 inline-block"
+            >
               Start building with Payxara
             </Link>
           </ScrollReveal>
