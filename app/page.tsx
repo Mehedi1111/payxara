@@ -121,8 +121,8 @@ export default function HomePage() {
           <div className="relative hidden md:block">
             <div className="relative">
               <Image
-                src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=600&h=440&q=80"
-                alt="Payxara dashboard"
+                src="https://images.unsplash.com/photo-1556742502-ec7c0e9f34b1?auto=format&fit=crop&w=600&h=440&q=80"
+                alt="Payxara payment platform"
                 width={600}
                 height={440}
                 className="rounded-2xl shadow-mockup"
@@ -136,8 +136,8 @@ export default function HomePage() {
 
               {/* Person photo */}
               <Image
-                src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=120&h=120&q=80"
-                alt="Wealth advisor"
+                src="https://images.unsplash.com/photo-1713947506242-8fcae733d158?auto=format&fit=crop&w=120&h=120&q=80"
+                alt="Payxara user"
                 width={72}
                 height={72}
                 className="absolute top-6 right-[-16px] rounded-full border-[3px] border-white shadow-card-lg object-cover"
@@ -257,7 +257,7 @@ export default function HomePage() {
               <div className="bg-canvas rounded-2xl overflow-hidden">
                 <div className="h-56 relative overflow-hidden">
                   <Image
-                    src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=580&h=340&q=80"
+                    src="https://images.unsplash.com/photo-1613243555988-441166d4d6fd?auto=format&fit=crop&w=580&h=340&q=80"
                     alt="Portfolio intelligence"
                     fill
                     className="object-cover"
@@ -293,7 +293,7 @@ export default function HomePage() {
               <div className="bg-canvas rounded-2xl overflow-hidden">
                 <div className="h-56 relative overflow-hidden">
                   <Image
-                    src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?auto=format&fit=crop&w=580&h=340&q=80"
+                    src="https://images.unsplash.com/photo-1587906697341-bfbde76785c7?auto=format&fit=crop&w=580&h=340&q=80"
                     alt="Automated reporting"
                     fill
                     className="object-cover"
@@ -450,8 +450,8 @@ export default function HomePage() {
           <ScrollReveal x={-40}>
             <div className="relative overflow-hidden h-full min-h-[320px]">
               <Image
-                src="https://images.unsplash.com/photo-1560472354-b33ff0c44a43?auto=format&fit=crop&w=700&h=580&q=80"
-                alt="Hartley Capital"
+                src="https://images.unsplash.com/photo-1741794852942-c4956a127ba2?auto=format&fit=crop&w=700&h=580&q=80"
+                alt="Contactless payment"
                 fill
                 className="object-cover"
               />
@@ -543,8 +543,8 @@ export default function HomePage() {
           {/* Right: mockup image */}
           <ScrollReveal x={40}>
             <Image
-              src="https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?auto=format&fit=crop&w=620&h=460&q=80"
-              alt="Payxara platform"
+              src="https://images.unsplash.com/photo-1659353669929-1276a93a2d04?auto=format&fit=crop&w=620&h=460&q=80"
+              alt="Payxara mobile platform"
               width={620}
               height={460}
               className="rounded-2xl shadow-card-lg w-full"

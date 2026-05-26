@@ -24,7 +24,7 @@ const cases = [
       { val: "£0", label: "extra headcount" },
     ],
     photo: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&w=400&h=400&q=80",
-    bg: "https://images.unsplash.com/photo-1560472354-b33ff0c44a43?auto=format&fit=crop&w=700&h=480&q=80",
+    bg: "https://images.unsplash.com/photo-1743529628081-6777a326a4e5?auto=format&fit=crop&w=700&h=480&q=80",
   },
   {
     firm: "Meridian Advisors",
