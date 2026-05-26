@@ -2,145 +2,124 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
-import { motion, AnimatePresence } from "framer-motion";
+import { usePathname } from "next/navigation";
+import { AnimatePresence, motion } from "framer-motion";
 
-const navLinks = [
-  { label: "Vision", href: "/vision" },
+const links = [
   { label: "Platform", href: "/platform" },
-  { label: "Brand", href: "/" },
+  { label: "Vision", href: "/vision" },
+  { label: "Pricing", href: "/pricing" },
   { label: "Clients", href: "/clients" },
-  { label: "Acquire", href: "/acquire" },
 ];
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
-  const [menuOpen, setMenuOpen] = useState(false);
+  const [open, setOpen] = useState(false);
+  const pathname = usePathname();
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 60);
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
+    const fn = () => setScrolled(window.scrollY > 10);
+    window.addEventListener("scroll", fn, { passive: true });
+    return () => window.removeEventListener("scroll", fn);
   }, []);
 
-  // Lock body scroll when mobile menu is open
   useEffect(() => {
-    document.body.style.overflow = menuOpen ? "hidden" : "";
+    document.body.style.overflow = open ? "hidden" : "";
     return () => { document.body.style.overflow = ""; };
-  }, [menuOpen]);
+  }, [open]);
 
   return (
     <>
-      <nav
-        className={`fixed top-0 left-0 right-0 z-50 h-[72px] flex items-center transition-all duration-500 ${
-          scrolled
-            ? "bg-ivory/95 backdrop-blur-xl border-b border-line"
-            : "bg-transparent"
+      <header
+        className={`fixed top-0 inset-x-0 z-50 h-16 flex items-center transition-all duration-300 ${
+          scrolled ? "bg-bg/95 backdrop-blur-md border-b border-border" : "bg-transparent"
         }`}
       >
-        <div className="w-full max-w-7xl mx-auto px-6 flex items-center justify-between">
+        <div className="max-w-6xl mx-auto w-full px-5 flex items-center justify-between">
           {/* Logo */}
-          <Link
-            href="/"
-            className="font-sans font-semibold text-[13px] tracking-[0.2em] uppercase text-ink"
-          >
-            PAYXARA
+          <Link href="/" className="text-[17px] font-bold text-ink tracking-tight">
+            Payxara
           </Link>
 
-          {/* Center nav — desktop */}
-          <div className="hidden lg:flex items-center gap-8">
-            <div className="h-px w-14 bg-line" />
-            {navLinks.map((link) => (
+          {/* Desktop nav */}
+          <nav className="hidden md:flex items-center gap-1">
+            {links.map((l) => (
               <Link
-                key={link.label}
-                href={link.href}
-                className="font-sans text-[13px] text-ink-muted lime-hover hover:text-ink transition-colors duration-200"
+                key={l.label}
+                href={l.href}
+                className={`px-4 py-2 rounded-full text-[14px] font-medium transition-colors ${
+                  pathname === l.href
+                    ? "text-ink bg-bg-alt"
+                    : "text-muted hover:text-ink hover:bg-bg-alt"
+                }`}
               >
-                {link.label}
+                {l.label}
               </Link>
             ))}
-            <div className="h-px w-14 bg-line" />
-          </div>
+          </nav>
 
-          {/* Right — desktop CTA + mobile hamburger */}
-          <div className="flex items-center gap-4">
-            <Link
-              href="/acquire"
-              className="hidden lg:inline-flex items-center bg-ink text-ivory font-sans font-semibold text-[12px] tracking-[0.05em] uppercase px-5 py-2.5 rounded-[4px] hover:bg-lime hover:text-ink transition-all duration-250"
-            >
-              Acquire Domain
+          {/* Desktop CTA */}
+          <div className="hidden md:flex items-center gap-3">
+            <Link href="#" className="text-[14px] font-medium text-muted hover:text-ink transition-colors">
+              Log in
             </Link>
-
-            {/* Hamburger */}
-            <button
-              onClick={() => setMenuOpen(!menuOpen)}
-              className="lg:hidden p-2 flex flex-col gap-[5px] group"
-              aria-label="Toggle menu"
+            <Link
+              href="#"
+              className="bg-ink text-bg text-[13px] font-semibold px-4 py-2 rounded-full hover:bg-ink/80 transition-colors"
             >
-              <span
-                className={`block h-px w-6 bg-ink transition-all duration-300 origin-center ${
-                  menuOpen ? "rotate-45 translate-y-[7px]" : ""
-                }`}
-              />
-              <span
-                className={`block h-px w-6 bg-ink transition-all duration-300 ${
-                  menuOpen ? "opacity-0 scale-x-0" : ""
-                }`}
-              />
-              <span
-                className={`block h-px w-6 bg-ink transition-all duration-300 origin-center ${
-                  menuOpen ? "-rotate-45 -translate-y-[7px]" : ""
-                }`}
-              />
-            </button>
+              Get started
+            </Link>
           </div>
-        </div>
-      </nav>
 
-      {/* Mobile fullscreen menu */}
-      <AnimatePresence>
-        {menuOpen && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.3 }}
-            className="fixed inset-0 z-40 bg-ivory grain flex flex-col items-center justify-center gap-2"
+          {/* Mobile hamburger */}
+          <button
+            onClick={() => setOpen(!open)}
+            className="md:hidden p-2 flex flex-col gap-[5px]"
+            aria-label="Toggle menu"
           >
-            {navLinks.map((link, i) => (
-              <motion.div
-                key={link.label}
-                initial={{ opacity: 0, y: 24 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: 8 }}
-                transition={{
-                  duration: 0.4,
-                  ease: [0.16, 1, 0.3, 1],
-                  delay: i * 0.07,
-                }}
-              >
-                <Link
-                  href={link.href}
-                  onClick={() => setMenuOpen(false)}
-                  className="font-serif italic text-[clamp(36px,10vw,56px)] text-ink leading-tight block text-center hover:text-ink-muted transition-colors"
+            <span className={`block h-[1.5px] w-5 bg-ink transition-all duration-300 origin-center ${open ? "rotate-45 translate-y-[6.5px]" : ""}`} />
+            <span className={`block h-[1.5px] w-5 bg-ink transition-all duration-300 ${open ? "opacity-0" : ""}`} />
+            <span className={`block h-[1.5px] w-5 bg-ink transition-all duration-300 origin-center ${open ? "-rotate-45 -translate-y-[6.5px]" : ""}`} />
+          </button>
+        </div>
+      </header>
+
+      {/* Mobile menu */}
+      <AnimatePresence>
+        {open && (
+          <motion.div
+            initial={{ opacity: 0, y: -8 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -8 }}
+            transition={{ duration: 0.2 }}
+            className="fixed inset-0 z-40 bg-bg pt-16 flex flex-col px-5 py-8"
+          >
+            <nav className="flex flex-col gap-1">
+              {links.map((l, i) => (
+                <motion.div
+                  key={l.label}
+                  initial={{ opacity: 0, x: -10 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: i * 0.05 }}
                 >
-                  {link.label}
-                </Link>
-              </motion.div>
-            ))}
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.4, duration: 0.4 }}
-              className="mt-8"
-            >
-              <Link
-                href="/acquire"
-                onClick={() => setMenuOpen(false)}
-                className="bg-ink text-ivory font-sans font-semibold text-[12px] tracking-[0.08em] uppercase px-6 py-3 rounded-[4px]"
-              >
-                Acquire Domain
+                  <Link
+                    href={l.href}
+                    onClick={() => setOpen(false)}
+                    className="block text-[24px] font-semibold text-ink py-3 border-b border-border"
+                  >
+                    {l.label}
+                  </Link>
+                </motion.div>
+              ))}
+            </nav>
+            <div className="mt-8 flex flex-col gap-3">
+              <Link href="#" className="text-center py-3 border border-border rounded-full text-[15px] font-medium text-ink">
+                Log in
               </Link>
-            </motion.div>
+              <Link href="#" className="text-center py-3 bg-ink text-bg rounded-full text-[15px] font-semibold">
+                Get started
+              </Link>
+            </div>
           </motion.div>
         )}
       </AnimatePresence>

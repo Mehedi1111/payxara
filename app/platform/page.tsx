@@ -1,118 +1,143 @@
 import type { Metadata } from "next";
-import SplitText from "@/components/SplitText";
+import Link from "next/link";
 import ScrollReveal from "@/components/ScrollReveal";
-import LimeAccent from "@/components/LimeAccent";
 
 export const metadata: Metadata = {
-  title: "Platform — Built for wealth that demands more",
-  description:
-    "Payxara is the brand architecture for a private wealth intelligence platform — where machine precision meets human discernment.",
+  title: "Platform — How Payxara works",
+  description: "One platform for every payment need. Transfers, FX, analytics, and APIs — built for teams that move fast.",
 };
 
-const cells = [
+const capabilities = [
   {
-    title: "Private Intelligence",
-    body: "Real-time portfolio intelligence layered with macroeconomic signals. Not dashboards — decisions. Built for advisors who operate at the intersection of data and discretion.",
+    category: "Transfers",
+    items: [
+      { title: "Domestic transfers", body: "Same-day ACH and wire transfers across all major banking networks." },
+      { title: "International wires", body: "SWIFT and local rails to 180+ countries. Settled in local currency." },
+      { title: "Batch payments", body: "Send to hundreds of recipients in a single API call or file upload." },
+    ],
   },
   {
-    title: "Institutional Grade Architecture",
-    body: "The infrastructure private banks build in decades — delivered under a single brand. SOC 2 compliant, multi-jurisdictional, zero-latency trade execution intelligence.",
+    category: "FX & Treasury",
+    items: [
+      { title: "Live exchange rates", body: "Mid-market rates in 60+ currencies, updated every 30 seconds." },
+      { title: "FX hedging tools", body: "Lock in rates forward to protect against currency fluctuations." },
+      { title: "Multi-currency accounts", body: "Hold, convert, and pay in any supported currency without conversion loss." },
+    ],
   },
   {
-    title: "White-Glove Digital Experience",
-    body: "Payxara's brand promise: technology that feels handmade. Every interaction calibrated for high-net-worth clients who have seen everything and are impressed by nothing ordinary.",
+    category: "Compliance & Security",
+    items: [
+      { title: "Automated KYB/KYC", body: "Onboard counterparties and verify business identities in minutes." },
+      { title: "Transaction monitoring", body: "AI-powered screening against global sanctions and watchlists, real time." },
+      { title: "Audit trails", body: "Immutable, timestamped records of every transaction for regulators and auditors." },
+    ],
   },
-  {
-    title: "Capital Clarity Engine",
-    body: "Position reports that don't require interpretation. Tax-optimized rebalancing that doesn't require explanation. Payxara makes complexity invisible.",
-  },
-];
-
-const markets = [
-  { n: "01", title: "Private Banking", sub: "Primary market" },
-  { n: "02", title: "Digital Wealth", sub: "Product category" },
-  { n: "03", title: "Family Office", sub: "Institutional use" },
-  { n: "04", title: "Boutique PE", sub: "Capital markets" },
 ];
 
 export default function PlatformPage() {
   return (
     <>
       {/* Hero */}
-      <section className="pt-40 pb-24 px-6">
-        <div className="max-w-7xl mx-auto">
-          <LimeAccent />
-          <p className="font-sans font-semibold text-[11px] tracking-[0.2em] text-ink-faint uppercase mt-2">
-            Platform
-          </p>
-          <h1 className="font-serif font-light italic text-[clamp(44px,6vw,88px)] leading-[1.04] text-ink mt-8 max-w-3xl">
-            <span className="block">
-              <SplitText text="Built for wealth" />
-            </span>
-            <span className="block">
-              <SplitText text="that demands more." delay={0.2} />
-            </span>
-          </h1>
-          <ScrollReveal delay={0.4}>
-            <p className="font-sans font-light text-[clamp(16px,1.8vw,19px)] text-ink-muted max-w-md mt-8 leading-[1.7]">
-              Payxara is the brand architecture for a private wealth intelligence
-              platform — where machine precision meets human discernment.
+      <section className="pt-32 pb-20 lg:pt-40 lg:pb-28 px-5 bg-bg">
+        <div className="max-w-6xl mx-auto">
+          <ScrollReveal>
+            <p className="text-[11px] font-semibold tracking-[0.15em] uppercase text-muted mb-4">Platform</p>
+            <h1 className="text-[clamp(36px,6vw,68px)] font-extrabold text-ink leading-[1.05] tracking-tight mb-6 max-w-3xl">
+              One platform. Every payment need covered.
+            </h1>
+            <p className="text-[clamp(16px,2vw,20px)] text-muted leading-relaxed max-w-xl">
+              Transfers, FX, analytics, developer APIs — built for teams that move
+              fast and can&apos;t afford to be slowed down by financial plumbing.
             </p>
           </ScrollReveal>
         </div>
       </section>
 
-      {/* Feature grid */}
-      <div className="border-t border-line">
-        <div className="max-w-7xl mx-auto grid md:grid-cols-2">
-          {cells.map((cell, i) => (
-            <ScrollReveal
-              key={cell.title}
-              delay={i * 0.1}
-              className={`px-8 lg:px-14 py-16 border-b border-line ${
-                i % 2 === 0 ? "md:border-r md:border-line" : ""
-              }`}
-            >
-              <LimeAccent width={24} />
-              <h2 className="font-serif font-semibold text-[clamp(20px,2.5vw,28px)] text-ink mt-4">
-                {cell.title}
-              </h2>
-              <p className="font-sans font-light text-[15px] text-ink-muted mt-4 leading-[1.75]">
-                {cell.body}
-              </p>
-            </ScrollReveal>
+      {/* Capabilities */}
+      <section className="py-20 lg:py-28 px-5 bg-bg-alt border-t border-border">
+        <div className="max-w-6xl mx-auto space-y-16">
+          {capabilities.map((cap, ci) => (
+            <div key={cap.category}>
+              <ScrollReveal>
+                <p className="text-[13px] font-semibold text-accent mb-6">{cap.category}</p>
+              </ScrollReveal>
+              <div className="grid md:grid-cols-3 gap-5">
+                {cap.items.map((item, i) => (
+                  <ScrollReveal key={item.title} delay={i * 0.08}>
+                    <div className="bg-card border border-border rounded-2xl p-6 h-full">
+                      <h3 className="text-[16px] font-semibold text-ink mb-2">{item.title}</h3>
+                      <p className="text-[14px] text-muted leading-relaxed">{item.body}</p>
+                    </div>
+                  </ScrollReveal>
+                ))}
+              </div>
+            </div>
           ))}
         </div>
-      </div>
-
-      {/* Large statement */}
-      <section className="border-t border-b border-line py-24 lg:py-32 px-6 text-center">
-        <ScrollReveal>
-          <blockquote className="font-serif font-light italic text-[clamp(22px,4vw,62px)] text-ink max-w-5xl mx-auto leading-[1.15]">
-            "The client experience should feel like the brand — quiet, confident,
-            and impossible to confuse with anything else."
-          </blockquote>
-        </ScrollReveal>
       </section>
 
-      {/* Markets */}
-      <section className="py-24 lg:py-32 px-6 border-b border-line">
-        <div className="max-w-7xl mx-auto">
-          <div className="grid grid-cols-2 md:grid-cols-4 divide-x divide-line">
-            {markets.map((m, i) => (
-              <ScrollReveal key={m.n} delay={i * 0.1} className="px-6 lg:px-10 text-center">
-                <p className="font-sans font-light text-[10px] tracking-[0.2em] uppercase text-ink-faint mb-3">
-                  {m.n}
-                </p>
-                <p className="font-serif italic text-[clamp(16px,2vw,22px)] text-ink">
-                  {m.title}
-                </p>
-                <p className="font-sans font-light text-[13px] text-ink-faint mt-2">
-                  {m.sub}
-                </p>
-              </ScrollReveal>
-            ))}
-          </div>
+      {/* API section */}
+      <section className="py-20 lg:py-28 px-5 bg-bg border-t border-border">
+        <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-12 lg:gap-20 items-center">
+          <ScrollReveal>
+            <p className="text-[11px] font-semibold tracking-[0.15em] uppercase text-muted mb-4">For developers</p>
+            <h2 className="text-[clamp(26px,4vw,44px)] font-bold text-ink leading-tight mb-5">
+              Integrate payments in an afternoon.
+            </h2>
+            <p className="text-[15px] text-muted leading-relaxed mb-8">
+              Clean REST APIs, comprehensive webhooks, and SDKs for Node, Python,
+              Ruby, Go, Java, PHP, .NET, and Elixir. Sandbox environment included
+              — no approval required to start testing.
+            </p>
+            <div className="flex flex-wrap gap-3">
+              <Link href="#" className="bg-ink text-white text-[14px] font-semibold px-5 py-2.5 rounded-full hover:bg-ink/80 transition-colors">
+                Read the docs
+              </Link>
+              <Link href="#" className="border border-border text-ink text-[14px] font-medium px-5 py-2.5 rounded-full hover:bg-bg-alt transition-colors">
+                View on GitHub →
+              </Link>
+            </div>
+          </ScrollReveal>
+          <ScrollReveal delay={0.1}>
+            <div className="space-y-3">
+              {[
+                { method: "POST", path: "/v1/transfers", ms: "48ms", color: "text-blue-400" },
+                { method: "GET", path: "/v1/transfers/:id", ms: "12ms", color: "text-green-400" },
+                { method: "GET", path: "/v1/fx/rates?from=USD&to=GBP", ms: "9ms", color: "text-green-400" },
+                { method: "POST", path: "/v1/accounts/verify", ms: "220ms", color: "text-blue-400" },
+                { method: "DELETE", path: "/v1/webhooks/:id", ms: "15ms", color: "text-red-400" },
+              ].map((r) => (
+                <div key={r.path} className="flex items-center justify-between bg-bg-dark rounded-xl px-4 py-3">
+                  <div className="flex items-center gap-3 font-mono text-[12px]">
+                    <span className={`${r.color} font-bold w-12 shrink-0`}>{r.method}</span>
+                    <span className="text-white/60 truncate">{r.path}</span>
+                  </div>
+                  <span className="text-white/30 text-[11px] font-mono shrink-0 ml-2">{r.ms}</span>
+                </div>
+              ))}
+            </div>
+          </ScrollReveal>
+        </div>
+      </section>
+
+      {/* CTA */}
+      <section className="py-20 lg:py-28 px-5 bg-bg-dark">
+        <div className="max-w-6xl mx-auto flex flex-col md:flex-row md:items-center justify-between gap-8">
+          <ScrollReveal>
+            <h2 className="text-[clamp(24px,4vw,44px)] font-bold text-white leading-tight max-w-lg">
+              Start building today. No credit card needed.
+            </h2>
+          </ScrollReveal>
+          <ScrollReveal delay={0.1} className="shrink-0">
+            <div className="flex flex-wrap gap-3">
+              <Link href="#" className="bg-white text-ink text-[15px] font-semibold px-7 py-3.5 rounded-full hover:bg-white/90 transition-colors">
+                Get started free
+              </Link>
+              <Link href="/pricing" className="border border-white/20 text-white text-[15px] font-medium px-7 py-3.5 rounded-full hover:bg-white/10 transition-colors">
+                View pricing
+              </Link>
+            </div>
+          </ScrollReveal>
         </div>
       </section>
     </>
