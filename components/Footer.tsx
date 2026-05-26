@@ -50,9 +50,9 @@ export default function Footer() {
             <Image
               src="/payxara%20logo.png"
               alt="Payxara"
-              width={120}
-              height={32}
-              className="object-contain h-8 w-auto brightness-0 invert"
+              width={100}
+              height={26}
+              className="object-contain h-6 w-auto brightness-0 invert"
             />
             <p className="text-[14px] text-white/50 mt-3 max-w-xs leading-relaxed">
               Private wealth intelligence platform. Built for advisors who expect more.

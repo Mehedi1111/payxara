@@ -55,9 +55,9 @@ export default function Navbar() {
             <Image
               src="/payxara%20logo.png"
               alt="Payxara"
-              width={120}
-              height={32}
-              className="object-contain h-8 w-auto"
+              width={100}
+              height={26}
+              className="object-contain h-6 w-auto"
               priority
             />
           </Link>
